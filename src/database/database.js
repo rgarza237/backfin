@@ -5,7 +5,7 @@ export const sequelize = new Sequelize(
     'roberto_garza',
      'Enroute123',
 {
- host: '127.0.0.1',
- dialect: 'postgres'
+ host: 'http://3.218.67.164',
+ dialect: -'postgres'
 })
 

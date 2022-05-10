@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+    postgres_db35:
+        container_name: postgres35
+        restart: always
+        build: .
+        ports:
+            - 10035:5535
+        volumes:
+            - "/home/roberto_garza/postgres:/usr/src/postgres"
+            - /usr/src/app/node_modules
+        environment:
+            - PG_USER=roberto_garza
+            - PG_PASSWORD=Enroute123
+            - PG_DATABASE=roberto_garzadb
+            - PG_HOST=roberto_garza
+        depends_on: 
+            - db
+        command: npm run dev
+    db: 
+        container_name: db
+        image: postgres:14-alpine
+        ports: 
+            - 5535:5535
+        environment:
+            - POSTGRES_DB=roberto_garzadb
+            - POSTGRES_PASSWORD=Enroute123
+            - POSTGRES_USER=roberto_garza
+            - POSTGRES_HOST=postgres_db35
+        volumes:
+            - "/home/roberto_garza/trabajoFinal/Back/backfin/docker-compose.yml:/usr/src/django/library"
+volumes:
+  db-data:
+

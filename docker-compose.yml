@@ -1,35 +1,41 @@
 version: '3'
 
 services:
-    postgres_db35:
-        container_name: postgres35
+    backend:
+        container_name: api-name
         restart: always
         build: .
         ports:
             - 10035:5535
         volumes:
-            - "/home/roberto_garza/postgres:/usr/src/postgres"
+            - ./:/usr/src/app
             - /usr/src/app/node_modules
         environment:
             - PG_USER=roberto_garza
             - PG_PASSWORD=Enroute123
-            - PG_DATABASE=roberto_garzadb
+            - PG_DATABASE=roberto_hernandezdb
             - PG_HOST=roberto_garza
         depends_on: 
             - db
         command: npm run dev
     db: 
-        container_name: db
-        image: postgres:14-alpine
+        container_name: django35
+        image: postgres:13
         ports: 
-            - 5535:5535
+            - 5532:5532
         environment:
-            - POSTGRES_DB=roberto_garzadb
+            - POSTGRES_DB=roberto_hernandezdb
             - POSTGRES_PASSWORD=Enroute123
             - POSTGRES_USER=roberto_garza
-            - POSTGRES_HOST=postgres_db35
+            - POSTGRES_HOST_AUTH_METHOD=trust
+            - PGDATA=/var/lib/postgresql/data/pgdata
         volumes:
-            - "/home/roberto_garza/trabajoFinal/Back/backfin/docker-compose.yml:/usr/src/django/library"
+            - db-data:/var/lib/postgresql/data/pgdata
+        secrets:
+            - postgresql_password
 volumes:
   db-data:
 
+secrets:
+  postgresql_password:
+    file: odoo_pg_pass

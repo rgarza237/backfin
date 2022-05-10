@@ -6,7 +6,7 @@ services:
         restart: always
         build: .
         ports:
-            - 10035:5535
+            - 4000:4000
         volumes:
             - ./:/usr/src/app
             - /usr/src/app/node_modules
@@ -14,7 +14,7 @@ services:
             - PG_USER=roberto_garza
             - PG_PASSWORD=Enroute123
             - PG_DATABASE=roberto_hernandezdb
-            - PG_HOST=roberto_garza
+            - PG_HOST=db
         depends_on: 
             - db
         command: npm run dev
@@ -22,7 +22,7 @@ services:
         container_name: django35
         image: postgres:13
         ports: 
-            - 5532:5532
+            - 5432:5432
         environment:
             - POSTGRES_DB=roberto_hernandezdb
             - POSTGRES_PASSWORD=Enroute123
@@ -38,4 +38,4 @@ volumes:
 
 secrets:
   postgresql_password:
-    file: odoo_pg_pass
+    file: pg_pass

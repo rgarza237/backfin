@@ -1,11 +1,15 @@
+//const { Sequelize } = require('sequelize');
 import { Sequelize } from 'sequelize'
 
-export const sequelize = new Sequelize(
-    'roberto_garzadb', 
-    'roberto_garza',
-     'Enroute123',
+ const sequelize = new Sequelize(
+    process.env.PG_DATABASE,
+    process.env.PG_USER,
+    process.env.PG_PASSWORD,
 {
- host: 'http://3.218.67.164',
- dialect: -'postgres'
+ host: 'localhost',
+ //host: 'http://3.218.67.164',
+ dialect: 'postgres'
 })
+
+export default sequelize;
 

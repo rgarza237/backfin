@@ -6,7 +6,7 @@ import { Sequelize } from 'sequelize'
     process.env.PG_USER,
     process.env.PG_PASSWORD,
 {
- host: 'localhost',
+ host: process.env.PG_HOST,
  //host: 'http://3.218.67.164',
  dialect: 'postgres'
 })

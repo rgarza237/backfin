@@ -30,7 +30,8 @@ export const createUser = async (req, res) => {
     })
 
     console.log(newUser)
-    res.json(newUser)
+    res.send(newUser)
+  //  res.json(newUser)
 }
 
 export const updateUser = async (req, res) => {

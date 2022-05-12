@@ -30,7 +30,7 @@ services:
             - POSTGRES_HOST_AUTH_METHOD=trust
             - PGDATA=/var/lib/postgresql/data/pgdata
         volumes:
-            - db-data:/var/lib/postgresql/data/pgdata
+            - C:\Users\James\Desktop\Rockstars\postgresql:/var/lib/postgresql/data/pgdata
         secrets:
             - postgresql_password
 volumes:

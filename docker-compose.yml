@@ -5,32 +5,37 @@ services:
         container_name: api-name
         restart: always
         build: .
+        networks:
+          - our-library-net
         ports:
             - 4000:4000
         volumes:
             - ./:/usr/src/app
             - /usr/src/app/node_modules
         environment:
-            - PG_USER=roberto_garza
+            - PG_USER=$PG_USER
             - PG_PASSWORD=Enroute123
-            - PG_DATABASE=roberto_hernandezdb
-            - PG_HOST=db
+            - PG_DATABASE=roberto_hernandezdb123
+            - PG_HOST=django35
         depends_on: 
             - db
         command: npm run dev
+
     db: 
         container_name: django35
         image: postgres:13
+        networks:
+          - our-library-net
         ports: 
             - 5432:5432
         environment:
-            - POSTGRES_DB=roberto_hernandezdb
+            - POSTGRES_DB=roberto_hernandezdb123
             - POSTGRES_PASSWORD=Enroute123
             - POSTGRES_USER=roberto_garza
             - POSTGRES_HOST_AUTH_METHOD=trust
             - PGDATA=/var/lib/postgresql/data/pgdata
         volumes:
-            - C:\Users\James\Desktop\Rockstars\postgresql:/var/lib/postgresql/data/pgdata
+            - db-data:/var/lib/postgresql/data/pgdata
         secrets:
             - postgresql_password
 volumes:
@@ -39,3 +44,10 @@ volumes:
 secrets:
   postgresql_password:
     file: pg_pass
+
+
+
+networks:
+  our-library-net:
+    #external: true
+    #driver: bridge

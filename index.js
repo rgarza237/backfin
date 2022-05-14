@@ -6,9 +6,10 @@ import './src/models/singer.js'
 import './src/models/song.js'
 
 
+
 async function main(){
     try {
-        await sequelize.sync();
+        await sequelize.sync({force:false});
 //        await sequelize.authenticate();
         console.log("Connection has been established successfully");
         app.listen(4000);

@@ -13,7 +13,7 @@ services:
             - ./:/usr/src/app
             - /usr/src/app/node_modules
         environment:
-            - PG_USER=$PG_USER
+            - PG_USER=roberto_garza
             - PG_PASSWORD=Enroute123
             - PG_DATABASE=roberto_hernandezdb123
             - PG_HOST=django35
